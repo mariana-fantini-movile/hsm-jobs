@@ -1,0 +1,31 @@
+{
+  "name": "hsm-comparison-fb-db",
+  "version": "1.0.0",
+  "description": "polling lambda function to compare HSMs from Facebook polling and Wavy's DB",
+  "main": "handler-refactor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Movile/hsm-approval-lambda.git"
+  },
+  "keywords": [
+    "polling",
+    "hsm",
+    "lambda"
+  ],
+  "author": "mariana.fantini@wavy.global",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Movile/hsm-approval-lambda/issues"
+  },
+  "homepage": "https://github.com/Movile/hsm-approval-lambda#readme",
+  "dependencies": {
+    "async": "^3.0.1",
+    "fbgraph": "^1.4.4",
+    "lodash": "^4.17.15",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
