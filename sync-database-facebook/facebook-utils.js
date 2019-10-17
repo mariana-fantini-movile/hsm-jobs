@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const GRAPH = require('fbgraph');
 const async = require("async");
+const FileUtils = require('./file-utils');
+const path_to_results = 'sync-database-facebook/results';
 
 const FB_ACCESS_TOKEN = {
     movile_brasil: '${polling.fb.access.token.movile_brasil}',
@@ -22,7 +24,6 @@ const garuda_hsm_status = {
 module.exports = {
     get_hsms_from_fb: async function (wabas_list) {
         const fb_response = await async.mapLimit(wabas_list, 10, async (waba_id, _) => await this.get_hsm_by_waba_id(waba_id));
-        // const fb_response = await this.get_hsm_by_waba_id('1767536906631501');
 
         // flatten
         const fb_hsm_list = _.flatMap(fb_response, (resp) => resp.hsm_list).reduce((acc, hsm) => {
@@ -33,7 +34,9 @@ module.exports = {
         const waba_id_errors = _.flatMap(fb_response, (resp) => resp.errors).reduce((acc, error) => {
             return acc.concat(error);
         }, []);
-        console.log('waba_id_errors', JSON.stringify(waba_id_errors));
+        console.log('Got ' + waba_id_errors.length + ' waba_id_errors.');
+        FileUtils.write_to_file(waba_id_errors, `${path_to_results}/waba_id_errors.txt`)
+        console.log('Got ' + fb_hsm_list.length + ' HSMs from Facebook');
 
         return fb_hsm_list;
     },

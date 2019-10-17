@@ -15,7 +15,7 @@ module.exports = {
     },
 
     hsm_is_valid: function(hsm) {
-        return hsm && hsm.namespace&& hsm.element_name && hsm.languages && hsm.languages.length > 0;
+        return hsm && hsm.namespace && hsm.element_name && hsm.languages && hsm.languages.length > 0;
     },
 
     hsm_is_same: function(garuda_hsm, fb_hsm) {

@@ -15,7 +15,6 @@ const HSM_INFO = `HSM info:
             * language: '%s'\n\n\n`;
 
 const DELETE_FILENAME = 'sync-database-facebook/results/delete-hsm.sql';
-const SET_DISAPPROVED_HSM_QUERY = `UPDATE %s SET status = 'disapproved' WHERE id = %s;\n\n`;
 const DELETE_HSM_QUERY = `
             -- Remember to BACKUP first
             DELETE FROM %s WHERE hsm_id = %s;
@@ -34,8 +33,7 @@ module.exports = {
     },
 
     add_hsm_to_be_deleted(hsm) {
-        fs.appendFileSync(DELETE_FILENAME, util.format(SET_DISAPPROVED_HSM_QUERY, HSM_TABLE, hsm.id));
-        // fs.appendFileSync(DELETE_FILENAME, util.format(DELETE_HSM_QUERY, HSM_LANG_TABLE, hsm.id, HSM_TABLE, hsm.id));
+        fs.appendFileSync(DELETE_FILENAME, util.format(DELETE_HSM_QUERY, HSM_LANG_TABLE, hsm.id, HSM_TABLE, hsm.id));
     },
 
     add_hsm_to_be_analysed(hsm) {
@@ -59,8 +57,6 @@ module.exports = {
     },
 
     write_to_file: function(array, filename) {
-        // fs.unlinkSync(filename);
-
         array.forEach((item) => {
             fs.appendFileSync(filename, JSON.stringify(item), (err) => {
                 if (err) {
@@ -70,10 +66,5 @@ module.exports = {
                 console.log('Saved data to file.');
             });
         });
-    },
-
-    delete_all_files: function() {
-        // fs.unlinkSync(UPDATE_FILENAME);
-        // fs.unlinkSync(DELETE_FILENAME);
     }
 }

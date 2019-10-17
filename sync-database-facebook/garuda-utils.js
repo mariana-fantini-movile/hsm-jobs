@@ -34,7 +34,7 @@ module.exports = {
 
         try {
             let auth_response = await RP(auth_options);
-            return auth_response.authentication.token
+            return auth_response.authentication.token;
         } catch (err) {
             console.log('Error getting request token: ' + err);
             return null;

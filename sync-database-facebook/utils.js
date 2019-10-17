@@ -1,5 +1,7 @@
 const FileUtils = require('./file-utils');
-const HsmValidator = require('./hsm-validator')
+const HsmValidator = require('./hsm-validator');
+
+const path_to_results = 'sync-database-facebook/results';
 
 module.exports = {
     
@@ -61,10 +63,10 @@ module.exports = {
         console.log('Found ' + diff_hsm.length + ' items on DIFF HSMS');
         console.log('Found ' + equal_hsm.length + ' EQUAL HSMS');
 
-        FileUtils.write_to_file(exists_fb_not_garuda, "sync-database-facebook/results/exists_fb_not_garuda.txt");
-        FileUtils.write_to_file(exists_garuda_not_fb, "sync-database-facebook/results/exists_garuda_not_fb.txt");
-        FileUtils.write_to_file(diff_hsm, "sync-database-facebook/results/diff_hsm.txt");
-        FileUtils.write_to_file(equal_hsm, "sync-database-facebook/results/equal_hsm.txt");
+        FileUtils.write_to_file(exists_fb_not_garuda, `${path_to_results}/exists_fb_not_garuda.txt`);
+        FileUtils.write_to_file(exists_garuda_not_fb, `${path_to_results}/exists_garuda_not_fb.txt`);
+        FileUtils.write_to_file(diff_hsm, `${path_to_results}/diff_hsm.txt`);
+        FileUtils.write_to_file(equal_hsm, `${path_to_results}/equal_hsm.txt`);
 
     },
 };
